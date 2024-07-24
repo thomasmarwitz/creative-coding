@@ -1,10 +1,12 @@
-// Title: Starfield with Centered 'Life' Words
+// Title: Starfield with Delayed 'Life' Words
+const SECOND = 60;
 
 const width = window.innerWidth;
 const height = window.innerHeight;
 const amtStars = 1000;
 const amtLifeWords = 1; // Number of 'life' words to display
 const speed = 20;
+const delayFrames = random(3, 5) * SECOND;
 
 let isAnimating = true; // Variable to track animation state
 
@@ -54,6 +56,8 @@ class Star {
 class LifeWord {
   constructor() {
     this.reset();
+    this.active = true;
+    this.delayFrames = 0;
   }
 
   reset() {
@@ -64,30 +68,41 @@ class LifeWord {
     this.z = width;
     this.opacity = 255;
     this.size = random(10, 30);
+    this.active = true;
+    this.delayFrames = delayFrames; // Delay between 1-3 seconds at 60 fps
   }
 
   update() {
-    this.z -= speed;
-    // Calculate distance from center
-    const distFromCenter = dist(this.x, this.y, 0, 0);
-    // Map opacity based on distance from center to edge
-    this.opacity = map(distFromCenter, 0, width / 2, 255, 0);
-    // Increase size as it moves out
-    this.size = map(this.z, width, 0, 10, 40);
-    if (this.z < 1 || this.opacity <= 0) {
-      this.reset();
+    if (this.active) {
+      this.z -= speed;
+      // Calculate distance from center
+      const distFromCenter = dist(this.x, this.y, 0, 0);
+      // Map opacity based on distance from center to edge
+      this.opacity = map(distFromCenter, 0, width / 2, 255, 0);
+      // Increase size as it moves out
+      this.size = map(this.z, width, 0, 10, 40);
+      if (this.z < 1 || this.opacity <= 0) {
+        this.active = false;
+      }
+    } else {
+      this.delayFrames--;
+      if (this.delayFrames <= 0) {
+        this.reset();
+      }
     }
   }
 
   show() {
-    const sx = map(this.x / this.z, 0, 1, 0, width);
-    const sy = map(this.y / this.z, 0, 1, 0, height);
-    
-    fill(255, this.opacity);
-    noStroke();
-    textSize(this.size);
-    textAlign(CENTER, CENTER);
-    text("life", sx, sy);
+    if (this.active) {
+      const sx = map(this.x / this.z, 0, 1, 0, width);
+      const sy = map(this.y / this.z, 0, 1, 0, height);
+      
+      fill(255, this.opacity);
+      noStroke();
+      textSize(this.size);
+      textAlign(CENTER, CENTER);
+      text("life", sx, sy);
+    }
   }
 }
 
