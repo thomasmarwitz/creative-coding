@@ -8,16 +8,16 @@ is given to inspire you to building something. Many people like to play around i
 ## Week 1
 > In honor of our fallen comrade, today we shall honor the dash (not to be confused with Hyphen, Minus sign, or Hyphen-minus). The humble connector. We are disconnected. We are Split-brain. How shall we cross? Have we overreached?
 
-[Artifact 1](1/)
+[Embeddings x D3.js Force Field](https://thomasmarwitz.github.io/creative-coding/1/)
 
 ## Week 2
 > My journey has always been the balance between chaos and order.
 
-[Artifact 2](2/)
+[Perlin Noise x Balance](https://thomasmarwitz.github.io/creative-coding/2/)
 
 ## Week 3
 
 Prompt:
 > Life moves pretty fast. If you don’t stop and look around once in a while, you could miss it.
 
-[Artifact 3](3/)
+[Starfield x Life](https://thomasmarwitz.github.io/creative-coding/3/)
