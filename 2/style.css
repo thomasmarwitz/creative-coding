@@ -1,0 +1,13 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  display: block;
+}
+
+/* remove scrollbars in x and y */
+html, body {
+  overflow: hidden;
+}
